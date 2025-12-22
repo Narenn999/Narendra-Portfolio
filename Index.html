@@ -675,14 +675,19 @@
                 <div class="group relative grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal-up">
                     <!-- Video Container -->
                     <div class="md:col-span-8 overflow-hidden rounded-sm relative aspect-video hover-trigger">
-                        <!-- AI Creative Cover Image (REPLACED VIDEO FOR STABILITY) -->
+                        <!-- YouTube Embed as Cover Video -->
                         <div class="w-full h-full aspect-video bg-black relative overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2670&auto=format&fit=crop" 
-                                  alt="AI Arsenal" 
-                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <iframe 
+                                src="https://www.youtube.com/embed/gtydhVUleBE?autoplay=1&mute=1&controls=0&loop=1&playlist=gtydhVUleBE&playsinline=1&rel=0&modestbranding=1&enablejsapi=1" 
+                                class="absolute top-1/2 left-1/2 w-[160%] h-[160%] -translate-x-1/2 -translate-y-1/2 pointer-events-none" 
+                                title="AI Generated Video"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
                             
-                            <!-- Overlay Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+                            <!-- Overlay Gradient for text readability if needed -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
                             <!-- Decorative Icon -->
                              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
