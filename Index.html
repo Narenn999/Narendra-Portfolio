@@ -412,6 +412,38 @@
             transform: translateY(0);
         }
 
+        /* GLITCH TEXT EFFECT - Simplified for Visibility */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* RESTORED: Outline Text Style */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            transition: all 0.5s ease;
+        }
+        
+        /* Optional: Fill on hover for extra cool factor */
+        .text-outline:hover {
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            -webkit-text-stroke: 0px transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .text-outline {
+                -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .glitch {
+            position: relative;
+            color: white;
+            /* Removed mix-blend-mode for better visibility */
+        }
+
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black">
@@ -434,7 +466,6 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <!-- UPDATED: Added background, blur, and border. Removed mix-blend-difference to fix scrolling overlap. -->
     <nav class="fixed top-0 w-full z-[100] px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/90 backdrop-blur-md border-b border-white/10 text-white transition-all duration-300">
         <a href="#" class="font-display text-2xl font-bold tracking-tight hover-trigger z-50" data-hover-text="Home">NJ.</a>
         
@@ -485,19 +516,27 @@
             </div>
 
             <div class="z-10 relative flex flex-col items-center justify-center w-full">
-                <!-- RESTORED LAYOUT: Clean Solid White Text and Outline Text -->
+                <!-- RESTORED CREATIVE LAYOUT -->
                 <div class="w-full text-center">
                     
-                    <div class="line-wrapper overflow-hidden mb-2">
-                        <h1 class="line-text font-display text-[12vw] leading-none font-bold uppercase tracking-tighter text-white">
-                            Narendra
-                        </h1>
+                    <!-- First Name: SOLID -->
+                    <!-- Added pb-4 to prevent cropping -->
+                    <div class="line-wrapper overflow-hidden mb-0 pb-4">
+                        <div class="glitch-wrapper">
+                            <h1 class="line-text font-display text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-white mix-blend-difference" data-text="Narendra">
+                                Narendra
+                            </h1>
+                        </div>
                     </div>
                     
-                    <div class="line-wrapper overflow-hidden">
-                        <h1 class="line-text font-display text-[12vw] leading-none font-bold uppercase tracking-tighter text-transparent" style="-webkit-text-stroke: 2px white;">
-                            Jadaun
-                        </h1>
+                    <!-- Last Name: OUTLINE (Transparent with Stroke) -->
+                    <!-- Added pb-4 to prevent cropping -->
+                    <div class="line-wrapper overflow-hidden pb-4">
+                        <div class="glitch-wrapper">
+                            <h1 class="line-text font-display text-[12vw] leading-[0.85] font-bold uppercase tracking-tighter text-outline" data-text="Jadaun">
+                                Jadaun
+                            </h1>
+                        </div>
                     </div>
 
                 </div>
@@ -636,19 +675,14 @@
                 <div class="group relative grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal-up">
                     <!-- Video Container -->
                     <div class="md:col-span-8 overflow-hidden rounded-sm relative aspect-video hover-trigger">
-                        <!-- YouTube Embed as Cover Video -->
+                        <!-- AI Creative Cover Image (REPLACED VIDEO FOR STABILITY) -->
                         <div class="w-full h-full aspect-video bg-black relative overflow-hidden">
-                            <iframe 
-                                src="https://www.youtube.com/embed/gtydhVUleBE?autoplay=1&mute=1&controls=0&loop=1&playlist=gtydhVUleBE&playsinline=1&rel=0&modestbranding=1&enablejsapi=1" 
-                                class="absolute top-1/2 left-1/2 w-[160%] h-[160%] -translate-x-1/2 -translate-y-1/2 pointer-events-none" 
-                                title="AI Generated Video"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                             <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2670&auto=format&fit=crop" 
+                                  alt="AI Arsenal" 
+                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             
-                            <!-- Overlay Gradient for text readability if needed -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                            <!-- Overlay Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
 
                             <!-- Decorative Icon -->
                              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -859,7 +893,7 @@
                 <h2 class="font-display text-5xl md:text-8xl font-bold leading-none mb-12">
                     Let's work<br>together.
                 </h2>
-                <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex flex-col md:flex-row gap-8 flex-wrap">
                     <!-- UPDATED: Smart Email Button -->
                     <a href="mailto:njadaun72@gmail.com" onclick="handleEmailClick(event)" class="glass-panel px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-black transition duration-300 hover-trigger inline-flex items-center justify-center gap-3 cursor-pointer">
                         <i class="ph-bold ph-envelope-simple"></i> <span id="email-btn-text">njadaun72@gmail.com</span>
@@ -867,6 +901,11 @@
                     
                     <a href="https://api.whatsapp.com/send?phone=917976728896" target="_blank" rel="noopener noreferrer" class="glass-panel px-8 py-4 rounded-full text-lg font-bold hover:bg-[#25D366] hover:text-white transition duration-300 hover-trigger inline-flex items-center justify-center gap-3">
                         <i class="ph-bold ph-whatsapp-logo"></i> WhatsApp Me
+                    </a>
+
+                    <!-- Added Phone Call Button -->
+                    <a href="tel:+917976728896" class="glass-panel px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-black transition duration-300 hover-trigger inline-flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-phone-call"></i> +91 7976728896
                     </a>
                 </div>
             </div>
@@ -940,7 +979,7 @@
 
     <script>
         // --- GEMINI API CONFIGURATION ---
-        const apiKey = ""; // API Key injected by environment
+        const apiKey = "AIzaSyCb8nAVZD5nmC83PKldZ4Kay2IvXJ_t6TM"; // API Key injected by environment
 
         // --- API KEY HANDLING FOR LOCAL EXECUTION ---
         function getApiKey() {
@@ -1076,23 +1115,34 @@
         requestAnimationFrame(updateCounter);
 
         function initSiteAnimations() {
-            // Hero Text Reveal using yPercent for better container handling
-            gsap.from(".line-text", {
-                yPercent: 100,
-                duration: 1.5,
-                stagger: 0.1,
-                ease: "power4.out"
-            });
-            
-            // Hero Content Fade In
-            gsap.to('.reveal-up', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power3.out",
-                delay: 0.5
-            });
+            // Updated Animation: Reveal from bottom
+            // Check if GSAP is available before using it
+            if (typeof gsap !== 'undefined') {
+                gsap.from(".line-text", {
+                    yPercent: 100,
+                    duration: 1.5,
+                    stagger: 0.1,
+                    ease: "power4.out"
+                });
+                
+                // Hero Content Fade In
+                gsap.to('.reveal-up', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    delay: 0.5
+                });
+            } else {
+                console.warn('GSAP not loaded');
+                // Fallback: Make elements visible if GSAP fails
+                document.querySelectorAll('.line-text').forEach(el => el.style.transform = 'none');
+                document.querySelectorAll('.reveal-up').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
         }
 
         // --- 2. SMOOTH SCROLL (Lenis) ---
@@ -1131,12 +1181,17 @@
             cursorDot.style.top = `${posY}px`;
 
             // Outline follows with lag using GSAP for better performance than .animate()
-            gsap.to(cursorOutline, {
-                left: posX,
-                top: posY,
-                duration: 0.2,
-                ease: "power2.out"
-            });
+            if (typeof gsap !== 'undefined') {
+                gsap.to(cursorOutline, {
+                    left: posX,
+                    top: posY,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            } else {
+                 cursorOutline.style.left = `${posX}px`;
+                 cursorOutline.style.top = `${posY}px`;
+            }
         });
 
         // Use event delegation for dynamically added elements (like AI results)
@@ -1153,17 +1208,18 @@
 
 
         // --- 4. GSAP SCROLL ANIMATIONS ---
-        gsap.registerPlugin(ScrollTrigger);
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
 
-        // General Reveal for Sections
-        const revealElements = document.querySelectorAll('.reveal-up');
-        revealElements.forEach(element => {
-            // Check if already visible from intro, otherwise add scroll trigger
-            if(window.scrollY > 100 || element.closest('#ai-lab')) {
-                 gsap.fromTo(element, 
-                    { opacity: 0, y: 50 },
-                    {
-                        scrollTrigger: {
+            // General Reveal for Sections
+            const revealElements = document.querySelectorAll('.reveal-up');
+            revealElements.forEach(element => {
+                // Check if already visible from intro, otherwise add scroll trigger
+                if(window.scrollY > 100 || element.closest('#ai-lab')) {
+                     gsap.fromTo(element, 
+                        { opacity: 0, y: 50 },
+                        {
+                            scrollTrigger: {
                             trigger: element,
                             start: "top 80%",
                             toggleActions: "play none none reverse"
@@ -1191,43 +1247,44 @@
                 }
             });
         });
+    }
 
-        // --- 5. THREE.JS BACKGROUND (Geometric Flow) ---
-        const initThreeJS = () => {
-            if (typeof THREE === 'undefined') return;
+    // --- 5. THREE.JS BACKGROUND (Geometric Flow) ---
+    const initThreeJS = () => {
+        if (typeof THREE === 'undefined') return;
 
-            const scene = new THREE.Scene();
-            // Add slight fog for depth
-            scene.fog = new THREE.FogExp2(0x050505, 0.002);
+        const scene = new THREE.Scene();
+        // Add slight fog for depth
+        scene.fog = new THREE.FogExp2(0x050505, 0.002);
 
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 5;
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
 
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            const container = document.getElementById('canvas-container');
-            if (container) container.appendChild(renderer.domElement);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        const container = document.getElementById('canvas-container');
+        if (container) container.appendChild(renderer.domElement);
 
-            // Particles Geometry
-            const geometry = new THREE.BufferGeometry();
-            const count = 3000;
-            const positions = new Float32Array(count * 3);
-            
-            for (let i = 0; i < count; i++) {
-                positions[i * 3] = (Math.random() - 0.5) * 20;
-                positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-                positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-            }
+        // Particles Geometry
+        const geometry = new THREE.BufferGeometry();
+        const count = 3000;
+        const positions = new Float32Array(count * 3);
+        
+        for (let i = 0; i < count; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+        }
 
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-            // Material
-            const material = new THREE.PointsMaterial({
-                size: 0.02,
-                color: 0xffffff,
-                transparent: true,
-                opacity: 0.8,
+        // Material
+        const material = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8,
             });
 
             const particles = new THREE.Points(geometry, material);
@@ -1670,5 +1727,3 @@
         }
 
     </script>
-</body>
-</html>
